@@ -1,20 +1,37 @@
-# Build-a-Smart-Supermarket-Scanner-with-Python-Flask-and-JavaScript
-Build a Smart Supermarket Scanner with Python, Flask, and JavaScript | Barcode POS Tutorial
+# Smart Supermarket Scanner
 
-Must READ : 
-Create a static folder and move two files into it "scanner.js and scanner.html" // #Warning
+A browser-based barcode point-of-sale app built with Flask, SQLite, and JavaScript.
 
-Welcome to this exciting tutorial where we build a Supermarket Scanner from scratch! In this video, we’ll create a web-based point-of-sale (POS) system that scans barcodes, manages a cart, and processes transactions with a custom QR code payment feature. Using Python (Flask) for the backend, JavaScript (QuaggaJS) for barcode scanning, and a sleek HTML/CSS frontend, this project is perfect for anyone interested in retail tech, web development, or DIY POS systems.
+## Requirements
 
-What you’ll learn:
-- Setting up a Flask server with SQLite for product and transaction management
-- Real-time barcode scanning with QuaggaJS and a responsive web interface
-- Adding products dynamically with category, manufacturer, price, and discount fields
-- Generating QR codes for payments and integrating a Tkinter GUI for desktop use
-- Making it mobile-friendly with modern CSS techniques
+- Python 3.10 or newer
 
+## Install and run on Windows
 
-💻 Prerequisites: Basic Python, JavaScript, and HTML/CSS knowledge
-🔔 Don’t forget to like, subscribe, and hit the bell icon for more coding tutorials!
+From the project folder, run these commands in PowerShell:
 
-#SupermarketScanner #PythonTutorial #WebDevelopment
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python app.py
+```
+
+The app starts only the local Flask server; it does not open a desktop window
+or launch a browser. Open `http://127.0.0.1:5000` yourself to use the scanner
+page. Stop the server with `Ctrl+C` in the terminal.
+Localhost is treated as a secure context by modern browsers, so the scanner can
+request camera access without the expired self-signed certificate. QuaggaJS is
+loaded from jsDelivr, so the scanner page also needs an internet connection.
+
+The SQLite database and log are stored beside `app.py`, regardless of the
+directory from which the app is launched. The included database is used if
+present; otherwise it is created at startup.
+
+## Using the scanner page
+
+Use **Add a New Product** to enter a barcode, product name, prices, discount,
+and stock. Add an existing item to the cart with the product picker and
+quantity field, or scan its barcode. Discounts are included in the displayed
+cart total and checkout uses the inventory stock count.

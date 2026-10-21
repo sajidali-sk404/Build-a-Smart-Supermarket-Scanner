@@ -2,7 +2,6 @@ import sqlite3
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import logging
-import threading
 import tkinter as tk
 from tkinter import ttk, messagebox
 import requests
@@ -12,20 +11,25 @@ from base64 import b64encode, b64decode
 from PIL import Image, ImageTk
 from datetime import datetime
 import socket
+from pathlib import Path
 
-app = Flask(__name__)
+BASE_DIR = Path(__file__).resolve().parent
+DATABASE_FILE = BASE_DIR / "supermarket.db"
+API_BASE_URL = "http://127.0.0.1:5000"
+
+app = Flask(__name__, static_folder=str(BASE_DIR / "static"), static_url_path="/static")
 CORS(app)
 
 # Logging setup
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[
-    logging.FileHandler("supermarket.log"),
+    logging.FileHandler(BASE_DIR / "supermarket.log"),
     logging.StreamHandler()
 ])
 logger = logging.getLogger(__name__)
 
 # Database setup
 def init_db():
-    conn = sqlite3.connect("supermarket.db", check_same_thread=False)
+    conn = sqlite3.connect(DATABASE_FILE, check_same_thread=False)
     c = conn.cursor()
     # Products table with additional fields
     c.execute('''
@@ -105,7 +109,7 @@ def add_product():
         if not data or 'barcode' not in data:
             return jsonify({"error": "Barcode required"}), 400
         barcode = data['barcode']
-        conn = sqlite3.connect("supermarket.db")
+        conn = sqlite3.connect(DATABASE_FILE)
         c = conn.cursor()
         c.execute("SELECT * FROM products WHERE barcode = ?", (barcode,))
         if c.fetchone():
@@ -135,7 +139,7 @@ def add_product():
 @app.route('/api/products', methods=['GET'])
 def get_products():
     try:
-        conn = sqlite3.connect("supermarket.db")
+        conn = sqlite3.connect(DATABASE_FILE)
         c = conn.cursor()
         c.execute("SELECT * FROM products")
         rows = c.fetchall()
@@ -152,7 +156,7 @@ def update_product(id):
         data = request.get_json()
         if not data:
             return jsonify({"error": "No data provided"}), 400
-        conn = sqlite3.connect("supermarket.db")
+        conn = sqlite3.connect(DATABASE_FILE)
         c = conn.cursor()
         c.execute("""
             UPDATE products SET name = ?, buy_price = ?, sell_price = ?, discount = ?, stock = ?
@@ -172,7 +176,7 @@ def update_product(id):
 @app.route('/api/products/<int:id>', methods=['DELETE'])
 def delete_product(id):
     try:
-        conn = sqlite3.connect("supermarket.db")
+        conn = sqlite3.connect(DATABASE_FILE)
         c = conn.cursor()
         c.execute("DELETE FROM products WHERE id = ?", (id,))
         if c.rowcount == 0:
@@ -189,7 +193,7 @@ def delete_product(id):
 @app.route('/api/products/barcode/<barcode>', methods=['GET'])
 def get_product_by_barcode(barcode):
     try:
-        conn = sqlite3.connect("supermarket.db")
+        conn = sqlite3.connect(DATABASE_FILE)
         c = conn.cursor()
         c.execute("SELECT * FROM products WHERE barcode = ?", (barcode,))
         row = c.fetchone()
@@ -208,7 +212,7 @@ def record_transaction():
         data = request.get_json()
         if not data or 'items' not in data:
             return jsonify({"error": "Items required"}), 400
-        conn = sqlite3.connect("supermarket.db")
+        conn = sqlite3.connect(DATABASE_FILE)
         c = conn.cursor()
         total = 0
         for item in data['items']:
@@ -242,7 +246,7 @@ def record_transaction():
 
 @app.route('/')
 def serve_scanner():
-    return send_from_directory('static', 'scanner.html')
+    return send_from_directory(app.static_folder, 'scanner.html')
 
 class SupermarketPOS:
     def __init__(self, root):
@@ -351,7 +355,7 @@ class SupermarketPOS:
         try:
             for item in self.inv_tree.get_children():
                 self.inv_tree.delete(item)
-            response = requests.get("https://127.0.0.1:5000/api/products", verify=False)
+            response = requests.get(f"{API_BASE_URL}/api/products")
             if response.status_code == 200:
                 for product in response.json():
                     self.inv_tree.insert("", "end", values=(product["id"], product["barcode"], product["name"],
@@ -370,7 +374,7 @@ class SupermarketPOS:
         try:
             for item in self.hist_tree.get_children():
                 self.hist_tree.delete(item)
-            conn = sqlite3.connect("supermarket.db")
+            conn = sqlite3.connect(DATABASE_FILE)
             c = conn.cursor()
             c.execute("SELECT * FROM transactions ORDER BY timestamp DESC")
             for row in c.fetchall():
@@ -413,7 +417,7 @@ class SupermarketPOS:
                     "discount": float(entries["Discount (%)"].get() or 0),
                     "stock": int(entries["Stock"].get())
                 }
-                response = requests.put(f"https://127.0.0.1:5000/api/products/{id}", json=data, verify=False)
+                response = requests.put(f"{API_BASE_URL}/api/products/{id}", json=data)
                 response.raise_for_status()
                 messagebox.showinfo("Success", "Product updated!")
                 self.refresh_products()
@@ -437,7 +441,7 @@ class SupermarketPOS:
 
         if messagebox.askyesno("Confirm", f"Delete '{item[1]}'?"):
             try:
-                response = requests.delete(f"https://127.0.0.1:5000/api/products/{id}", verify=False)
+                response = requests.delete(f"{API_BASE_URL}/api/products/{id}")
                 response.raise_for_status()
                 messagebox.showinfo("Success", "Product deleted!")
                 self.refresh_products()
@@ -454,14 +458,14 @@ class SupermarketPOS:
                 self.root.after(1000, poll)
                 return
             try:
-                response = requests.get("https://127.0.0.1:5000/api/products", timeout=2, verify=False)
+                response = requests.get(f"{API_BASE_URL}/api/products", timeout=2)
                 if response.status_code == 200:
                     products = response.json()
                     if products:
                         latest_product = products[-1]
                         barcode = latest_product["barcode"]
                         if barcode not in self.processed_barcodes and barcode not in [item["barcode"] for item in self.cart]:
-                            product_response = requests.get(f"https://127.0.0.1:5000/api/products/barcode/{barcode}", verify=False)
+                            product_response = requests.get(f"{API_BASE_URL}/api/products/barcode/{barcode}")
                             if product_response.status_code == 200:
                                 product = product_response.json()
                                 if product["sell_price"] == 0.0:  # New product needing price
@@ -521,7 +525,7 @@ class SupermarketPOS:
                     "discount": float(entries["Discount (%)"].get() or 0),
                     "stock": int(entries["Stock"].get())
                 }
-                response = requests.post("https://127.0.0.1:5000/api/products", json=data, verify=False)
+                response = requests.post(f"{API_BASE_URL}/api/products", json=data)
                 response.raise_for_status()
                 messagebox.showinfo("Success", "Product saved!")
                 self.refresh_products()
@@ -586,7 +590,7 @@ class SupermarketPOS:
             messagebox.showwarning("Warning", "Cart is empty!")
             return
         try:
-            response = requests.post("https://127.0.0.1:5000/api/transaction", json={"items": self.cart}, verify=False)
+            response = requests.post(f"{API_BASE_URL}/api/transaction", json={"items": self.cart})
             response.raise_for_status()
             data = response.json()
             self.show_payment_qr(data["qr_code"], data["total"])
@@ -617,12 +621,14 @@ class SupermarketPOS:
         tk.Button(popup, text="Close", command=popup.destroy, bg="#007bff", fg="white", font=("Arial", 11)).pack(pady=10)
 
 def run_flask():
-    logger.info("Starting Flask server on 0.0.0.0:5000 with HTTPS")
-    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False, ssl_context=('cert.pem', 'key.pem'))
+    logger.info("Starting Flask server on http://127.0.0.1:5000")
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=False,
+        use_reloader=False,
+    )
 
 if __name__ == "__main__":
     init_db()
-    threading.Thread(target=run_flask, daemon=True).start()
-    root = tk.Tk()
-    app = SupermarketPOS(root)
-    root.mainloop()
+    run_flask()
