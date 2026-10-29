@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
             color: #3498db;
             font-size: clamp(1.8em, 5vw, 2.5em);
             margin-bottom: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in;
         }
 
@@ -31,7 +32,7 @@
             background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
         }
 
@@ -46,7 +47,7 @@
             border-radius: 8px;
             display: block;
             margin: 20px auto;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         button {
@@ -60,7 +61,7 @@
             font-size: clamp(0.9em, 2.5vw, 1em);
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             width: auto;
             min-width: 100px;
         }
@@ -68,7 +69,7 @@
         button:hover {
             background-color: #2980b9;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
         }
 
         #stop-btn {
@@ -96,7 +97,8 @@
             background-color: #e67e22;
         }
 
-        #status, #result {
+        #status,
+        #result {
             margin: 15px 0;
             padding: 12px;
             border-radius: 8px;
@@ -124,7 +126,7 @@
             background: #fff;
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .panel {
@@ -132,24 +134,28 @@
             padding: 20px;
             border-radius: 10px;
             background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .product-form, .cart-add-form {
+        .product-form,
+        .cart-add-form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 12px;
             align-items: end;
         }
 
-        .product-form label, .cart-add-form label {
+        .product-form label,
+        .cart-add-form label {
             display: flex;
             flex-direction: column;
             gap: 5px;
             font-weight: 600;
         }
 
-        .product-form input, .cart-add-form select, .cart-add-form input {
+        .product-form input,
+        .cart-add-form select,
+        .cart-add-form input {
             box-sizing: border-box;
             width: 100%;
             min-height: 42px;
@@ -159,7 +165,8 @@
             font: inherit;
         }
 
-        .product-form button, .cart-add-form button {
+        .product-form button,
+        .cart-add-form button {
             min-height: 42px;
         }
 
@@ -170,7 +177,8 @@
             font-size: clamp(0.85em, 2.2vw, 1em);
         }
 
-        #cart-table th, #cart-table td {
+        #cart-table th,
+        #cart-table td {
             padding: 10px;
             border-bottom: 1px solid #eee;
             text-align: left;
@@ -217,7 +225,8 @@
                 min-width: 90px;
             }
 
-            #cart-table th, #cart-table td {
+            #cart-table th,
+            #cart-table td {
                 padding: 8px;
             }
 
@@ -253,7 +262,8 @@
                 min-width: 80px;
             }
 
-            #status, #result {
+            #status,
+            #result {
                 padding: 10px;
             }
 
@@ -261,17 +271,24 @@
                 padding: 10px;
             }
 
-            #cart-table th, #cart-table td {
+            #cart-table th,
+            #cart-table td {
                 padding: 6px;
             }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
+
 <body>
     <h1>Supermarket Scanner</h1>
     <div id="scanner-container">
@@ -284,10 +301,10 @@
                 <label>Product name
                     <input name="name" type="text" required>
                 </label>
-                <label>Buy price ($)
+                <label>Buy price
                     <input name="buy_price" type="number" min="0" step="0.01" value="1" required>
                 </label>
-                <label>Sell price ($)
+                <label>Sell price
                     <input name="sell_price" type="number" min="0.01" step="0.01" required>
                 </label>
                 <label>Discount (%)
@@ -331,7 +348,7 @@
                 </thead>
                 <tbody id="cart-body"></tbody>
             </table>
-            <div id="total">Total: $0.00</div>
+            <div id="total">Total: 0.00 PKR</div>
             <div class="button-group">
                 <button id="checkout-btn">Checkout</button>
                 <button id="clear-btn">Clear Cart</button>
@@ -340,4 +357,5 @@
     </div>
     <script src="/static/scanner.js"></script>
 </body>
+
 </html>

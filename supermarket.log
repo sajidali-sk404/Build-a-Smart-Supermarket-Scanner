@@ -4488,3 +4488,95 @@ AttributeError: 'SupermarketPOS' object has no attribute 'static_folder'
 2026-10-22 00:22:29,005 - INFO - 127.0.0.1 - - [22/Oct/2026 00:22:29] "GET / HTTP/1.1" 200 -
 2026-10-22 00:22:30,072 - INFO - 127.0.0.1 - - [22/Oct/2026 00:22:30] "GET /static/scanner.js HTTP/1.1" 200 -
 2026-10-22 00:22:30,968 - INFO - 127.0.0.1 - - [22/Oct/2026 00:22:30] "GET /api/products HTTP/1.1" 200 -
+2026-10-22 00:31:33,905 - INFO - Database initialized
+2026-10-22 00:31:33,906 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-22 00:31:33,932 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-22 00:31:33,933 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-22 00:32:19,018 - INFO - 127.0.0.1 - - [22/Oct/2026 00:32:19] "GET / HTTP/1.1" 200 -
+2026-10-22 00:32:28,759 - INFO - 127.0.0.1 - - [22/Oct/2026 00:32:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-10-22 00:32:30,241 - INFO - 127.0.0.1 - - [22/Oct/2026 00:32:30] "GET / HTTP/1.1" 200 -
+2026-10-22 00:32:30,841 - INFO - 127.0.0.1 - - [22/Oct/2026 00:32:30] "GET /static/scanner.js HTTP/1.1" 200 -
+2026-10-22 00:32:33,187 - INFO - 127.0.0.1 - - [22/Oct/2026 00:32:33] "GET /api/products HTTP/1.1" 200 -
+2026-10-22 00:41:59,818 - INFO - Added product: 786
+2026-10-22 00:41:59,820 - INFO - 127.0.0.1 - - [22/Oct/2026 00:41:59] "[35m[1mPOST /api/products HTTP/1.1[0m" 201 -
+2026-10-22 00:42:00,648 - INFO - 127.0.0.1 - - [22/Oct/2026 00:42:00] "GET /api/products HTTP/1.1" 200 -
+2026-10-22 00:42:44,905 - INFO - 127.0.0.1 - - [22/Oct/2026 00:42:44] "GET / HTTP/1.1" 200 -
+2026-10-22 00:42:45,777 - INFO - 127.0.0.1 - - [22/Oct/2026 00:42:45] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-22 00:42:46,115 - INFO - 127.0.0.1 - - [22/Oct/2026 00:42:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-10-22 00:42:46,657 - INFO - 127.0.0.1 - - [22/Oct/2026 00:42:46] "GET /api/products HTTP/1.1" 200 -
+2026-10-22 00:43:33,815 - INFO - Transaction recorded, total: $50.00
+2026-10-22 00:43:33,816 - INFO - 127.0.0.1 - - [22/Oct/2026 00:43:33] "[35m[1mPOST /api/transaction HTTP/1.1[0m" 201 -
+2026-10-22 00:43:35,051 - INFO - 127.0.0.1 - - [22/Oct/2026 00:43:35] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:30:28,542 - INFO - Database initialized
+2026-10-29 23:30:28,550 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-29 23:30:28,630 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-29 23:30:28,631 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-29 23:30:54,148 - INFO - 127.0.0.1 - - [29/Oct/2026 23:30:54] "GET / HTTP/1.1" 200 -
+2026-10-29 23:30:54,297 - INFO - 127.0.0.1 - - [29/Oct/2026 23:30:54] "GET /static/scanner.js HTTP/1.1" 200 -
+2026-10-29 23:30:55,223 - INFO - 127.0.0.1 - - [29/Oct/2026 23:30:55] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:30:55,415 - INFO - 127.0.0.1 - - [29/Oct/2026 23:30:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-10-29 23:31:52,743 - INFO - Added product: 1111111123344454
+2026-10-29 23:31:52,745 - INFO - 127.0.0.1 - - [29/Oct/2026 23:31:52] "[35m[1mPOST /api/products HTTP/1.1[0m" 201 -
+2026-10-29 23:31:52,757 - INFO - 127.0.0.1 - - [29/Oct/2026 23:31:52] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:31:56,801 - INFO - 127.0.0.1 - - [29/Oct/2026 23:31:56] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:31:56,823 - INFO - 127.0.0.1 - - [29/Oct/2026 23:31:56] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:31:56,846 - INFO - 127.0.0.1 - - [29/Oct/2026 23:31:56] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:32:13,662 - INFO - Database initialized
+2026-10-29 23:32:13,665 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-29 23:32:13,726 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-29 23:32:13,732 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-29 23:32:23,667 - INFO - 127.0.0.1 - - [29/Oct/2026 23:32:23] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:32:23,720 - INFO - 127.0.0.1 - - [29/Oct/2026 23:32:23] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:32:23,822 - INFO - 127.0.0.1 - - [29/Oct/2026 23:32:23] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:32:23,993 - INFO - 127.0.0.1 - - [29/Oct/2026 23:32:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-10-29 23:38:41,707 - INFO - 127.0.0.1 - - [29/Oct/2026 23:38:41] "GET / HTTP/1.1" 200 -
+2026-10-29 23:38:41,733 - INFO - 127.0.0.1 - - [29/Oct/2026 23:38:41] "GET /static/scanner.js HTTP/1.1" 200 -
+2026-10-29 23:38:42,727 - INFO - 127.0.0.1 - - [29/Oct/2026 23:38:42] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:39:20,222 - INFO - 127.0.0.1 - - [29/Oct/2026 23:39:20] "GET /api/products/barcode/5021889330014 HTTP/1.1" 200 -
+2026-10-29 23:39:48,912 - INFO - 127.0.0.1 - - [29/Oct/2026 23:39:48] "GET /api/products/barcode/5021889330014 HTTP/1.1" 200 -
+2026-10-29 23:39:48,922 - INFO - 127.0.0.1 - - [29/Oct/2026 23:39:48] "GET /api/products/barcode/5021889330014 HTTP/1.1" 200 -
+2026-10-29 23:48:04,790 - INFO - Database initialized
+2026-10-29 23:48:04,790 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-29 23:48:04,805 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-29 23:48:04,806 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-29 23:48:09,796 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:09] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:48:09,850 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:09] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:48:09,887 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:09] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:48:12,958 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:12] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:48:13,012 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:13] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:48:13,035 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:13] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:48:14,420 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:14] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:48:14,461 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:14] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:48:14,489 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:14] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:48:15,452 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:15] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:48:15,500 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:15] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:48:15,519 - INFO - 127.0.0.1 - - [29/Oct/2026 23:48:15] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:49:41,873 - INFO - Database initialized
+2026-10-29 23:49:41,873 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-29 23:49:41,887 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-29 23:49:41,887 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-29 23:49:45,801 - INFO - 127.0.0.1 - - [29/Oct/2026 23:49:45] "GET / HTTP/1.1" 200 -
+2026-10-29 23:49:45,886 - INFO - 127.0.0.1 - - [29/Oct/2026 23:49:45] "GET /static/scanner.js HTTP/1.1" 200 -
+2026-10-29 23:49:45,948 - INFO - 127.0.0.1 - - [29/Oct/2026 23:49:45] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:49:46,044 - INFO - 127.0.0.1 - - [29/Oct/2026 23:49:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-10-29 23:53:20,051 - INFO - Database initialized
+2026-10-29 23:53:20,052 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-29 23:53:20,077 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-29 23:53:20,077 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-29 23:53:22,315 - INFO - 127.0.0.1 - - [29/Oct/2026 23:53:22] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:53:22,338 - INFO - 127.0.0.1 - - [29/Oct/2026 23:53:22] "[36mGET /static/scanner.js HTTP/1.1[0m" 304 -
+2026-10-29 23:53:22,424 - INFO - 127.0.0.1 - - [29/Oct/2026 23:53:22] "GET /api/products HTTP/1.1" 200 -
+2026-10-29 23:54:22,696 - INFO - Database initialized
+2026-10-29 23:54:22,696 - INFO - Starting Flask server on http://127.0.0.1:5000
+2026-10-29 23:54:22,711 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-29 23:54:22,711 - INFO - [33mPress CTRL+C to quit[0m
+2026-10-29 23:54:26,694 - INFO - 127.0.0.1 - - [29/Oct/2026 23:54:26] "[36mGET / HTTP/1.1[0m" 304 -
+2026-10-29 23:54:26,717 - INFO - 127.0.0.1 - - [29/Oct/2026 23:54:26] "GET /static/scanner.js HTTP/1.1" 200 -
+2026-10-29 23:54:26,810 - INFO - 127.0.0.1 - - [29/Oct/2026 23:54:26] "GET /api/products HTTP/1.1" 200 -

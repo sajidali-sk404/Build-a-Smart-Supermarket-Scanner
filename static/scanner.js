@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
             productSelect.replaceChildren(new Option("Select a product", ""));
             products.forEach(product => {
                 const option = new Option(
-                    `${product.name} — ${product.barcode} ($${Number(product.sell_price).toFixed(2)}, stock: ${product.stock})`,
+                    `${product.name} — ${product.barcode} (PKR ${Number(product.sell_price).toFixed(2)}, stock: ${product.stock})`,
                     product.barcode
                 );
                 option.disabled = product.stock <= 0;
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const subtotal = discountedPrice * item.quantity;
             total += subtotal;
             const row = document.createElement("tr");
-            [item.barcode, item.name, `$${discountedPrice.toFixed(2)}`, item.quantity, `$${subtotal.toFixed(2)}`]
+            [item.barcode, item.name, `PKR ${discountedPrice.toFixed(2)}`, item.quantity, `PKR ${subtotal.toFixed(2)}`]
                 .forEach(value => {
                     const cell = document.createElement("td");
                     cell.textContent = value;
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             cartBody.appendChild(row);
         });
-        totalDiv.textContent = `Total: $${total.toFixed(2)}`;
+        totalDiv.textContent = `Total: PKR ${total.toFixed(2)}`;
     }
 
     async function checkout() {
@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <html>
             <body style="text-align: center; font-family: Arial;">
                 <h2>Payment</h2>
-                <p>Total: $${Number(total).toFixed(2)}</p>
+                <p>Total: PKR ${Number(total).toFixed(2)}</p>
                 <img src="data:image/png;base64,${qrBase64}" style="width: 200px; height: 200px;">
                 <p>Scan with your payment app</p>
                 <button onclick="window.close()">Close</button>
